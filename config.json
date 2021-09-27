@@ -1,0 +1,6 @@
+{
+  "APP.SECRET_KEY": "ADD YOUR SECRET KEY HERE",
+  "TEXT_API_URL": "https://pokeapi.co/api/v2/pokemon/{}/",
+  "IMAGE_API_URL": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{}.png",
+  "MAX_PKMN_URL": "151"
+}

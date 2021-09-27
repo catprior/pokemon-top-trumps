@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokemon Top Trumps</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <style>
+      .color-bg {
+        background-image: linear-gradient(to right, {{ p1_primary }}, {{ p1_secondary }});
+      }
+
+      .color-bg2 {
+        background-image: linear-gradient(to right, {{ p2_primary }}, {{ p2_secondary }});
+      }
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a href="/"><span class="navbar-brand mb-0 h1"><img src="/static/pokeball_icon.png" class="ball">Pokemon Top Trumps</span></a>
+  </nav>
+  <br>
+
+  <div class="container px-4">
+    <div class="row gx-5">
+      <div class="col">
+        <h2>Opponent chose:</h2>
+        <div class="pkmn-card">
+            <div class="color-bg">
+            <div class="titles">
+            <table class="title-table">
+              <tr>
+                <td class="card-title"><h1>{{ p1_name }}</h1></td>
+                <td class="card-icon"><img src="{{ p1_tcg_icon }}" class="icon"></td>
+              </tr>
+            </table>
+            </div>
+          <div class="img-con">
+          <img src="{{ p1_image }}" class="main-img">
+        </div>
+        <table class="stat-table">
+          <tr>
+            <td class="stat"><p>{{ p1_weight }}</p></td>
+            <td><p>Weight</p></td>
+          </tr>
+        </table>
+        <table class="stat-table">
+          <tr>
+            <td class="stat"><p>{{ p1_height }}</p></td>
+            <td><p>Height</p></td>
+          </tr>
+        </table>
+        <table class="stat-table">
+          <tr>
+            <td class="stat"><p>{{ p1_id }}</p></td>
+            <td><p>ID</p></td>
+          </tr>
+        </table>
+        <table class="stat-table">
+          <tr>
+            <td class="stat"><p>{{ p1_stat }}</p></td>
+            <td><p>Base Stat</p></td>
+          </tr>
+        </table>
+        </div>
+        </div>
+        <br>
+      </div>
+      <div class="col">
+        <h2>Your turn:</h2>
+        <div class="px-4 py-5 my-5 text-center">
+      <img class="d-block mx-auto mb-4" src="/static/pokeball_icon.png" alt="" width="72" height="auto">
+      <h2 class="display-5 fw-bold">Pick a stat</h2>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Select a stat from the options below:</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <form action="/submit/weight/" method="POST">
+          <button class="btn btn-primary btn-lg px-4 gap-3" name="submitBtn" type="submit">Weight</button>
+            </form>
+          <form action="/submit/height/" method="POST">
+          <button class="btn btn-primary btn-lg px-4 gap-3" name="submitBtn" type="submit">Height</button>
+            </form>
+          <form action="/submit/id/" method="POST">
+          <button class="btn btn-primary btn-lg px-4 gap-3" name="submitBtn" type="submit">ID</button>
+            </form>
+          <form action="/submit/stat/" method="POST">
+          <button class="btn btn-primary btn-lg px-4 gap-3" name="submitBtn" type="submit">Base</button>
+            </form>
+        </div>
+      </div>
+      </div>
+      </div>
+  </div>
+  </div>
+</body>
+</html>
+
