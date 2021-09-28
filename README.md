@@ -63,6 +63,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+<p align="center">
+<img src="https://github.com/catprior/pokemon-top-trumps/blob/master/project-screenshot.png" alt="Project Screenshot" width="800px" height="auto">
+</p>
+
 ### Built With
 
 * [Bootstrap](https://getbootstrap.com)
