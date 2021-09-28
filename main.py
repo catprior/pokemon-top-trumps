@@ -12,7 +12,7 @@ app.config.from_file('config.json', load=json.load)
 app.secret_key = app.config["APP.SECRET_KEY"]
 api_url = app.config["TEXT_API_URL"]
 image_api_url = app.config["IMAGE_API_URL"]
-max_pkmn_no = int(app.config["MAX_PKMN_URL"])
+max_pkmn_no = int(app.config["MAX_PKMN_NO"])
 
 
 # API request
