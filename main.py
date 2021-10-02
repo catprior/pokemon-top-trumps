@@ -15,11 +15,15 @@ image_api_url = app.config["IMAGE_API_URL"]
 max_pkmn_no = int(app.config["MAX_PKMN_NO"])
 
 
-# API request
-def choose_pokemon(player):
-    player_no = random.randint(1, max_pkmn_no)
-    player_url = api_url.format(player_no)
+# Get random Pokemon ID no
+def get_pkmn_id():
+    pokemon_no = random.randint(1, max_pkmn_no)
+    return pokemon_no
 
+
+# API request
+def choose_pokemon(pokemon_no):
+    player_url = api_url.format(pokemon_no)
     player_response = requests.get(player_url)
     player_pokemon = player_response.json()
 
@@ -29,7 +33,7 @@ def choose_pokemon(player):
     player_type = player_pokemon['types'][0]['type']['name']
     player_stat = player_pokemon['stats'][0]['base_stat']
     player_id = player_pokemon['id']
-    player_image = image_api_url.format(player_no)
+    player_image = image_api_url.format(pokemon_no)
 
     player_primary = get_pkmn_style(player_type)[0]
     player_secondary = get_pkmn_style(player_type)[1]
@@ -49,8 +53,9 @@ def index():
 @app.route("/submit/", methods=['POST'])
 def start_game():
     # Get Pokemon from API
-    p1_name, p1_height, p1_weight, p1_stat, p1_id, p1_image, p1_primary, p1_secondary, p1_tcg_icon = \
-        choose_pokemon('p1')
+    p1_no = get_pkmn_id()
+    p1_name, p1_height, p1_weight, p1_stat, p1_id, p1_image, p1_primary,\
+        p1_secondary, p1_tcg_icon = choose_pokemon(p1_no)
 
     # Add Player One's (Opponent) Pokemon from to session variables to carry them across pages
     session["p1_name"] = p1_name
@@ -79,8 +84,9 @@ def start_game():
 @app.route("/submit/weight/", methods=['POST'])
 def weight_game():
     # Get Player Two's Pokemon from API
-    p2_name, p2_height, p2_weight, p2_stat, p2_id, p2_image, p2_primary, p2_secondary, p2_tcg_icon = choose_pokemon(
-        'p2')
+    p2_no = get_pkmn_id()
+    p2_name, p2_height, p2_weight, p2_stat, p2_id, p2_image, p2_primary,\
+        p2_secondary, p2_tcg_icon = choose_pokemon(p2_no)
 
     # Get Player One's (Opponent) Pokemon from previous page
     p1_name = session.get("p1_name", None)
@@ -134,8 +140,9 @@ def weight_game():
 @app.route("/submit/height/", methods=['POST'])
 def height_game():
     # Get Player Two's Pokemon from API
-    p2_name, p2_height, p2_weight, p2_stat, p2_id, p2_image, p2_primary, p2_secondary, p2_tcg_icon = choose_pokemon(
-        'p2')
+    p2_no = get_pkmn_id()
+    p2_name, p2_height, p2_weight, p2_stat, p2_id, p2_image, p2_primary,\
+        p2_secondary, p2_tcg_icon = choose_pokemon(p2_no)
 
     # Get Player One's (Opponent) Pokemon from previous page
     p1_name = session.get("p1_name", None)
@@ -189,8 +196,9 @@ def height_game():
 @app.route("/submit/id/", methods=['POST'])
 def id_game():
     # Get Player Two's Pokemon from API
-    p2_name, p2_height, p2_weight, p2_stat, p2_id, p2_image, p2_primary, p2_secondary, p2_tcg_icon = choose_pokemon(
-        'p2')
+    p2_no = get_pkmn_id()
+    p2_name, p2_height, p2_weight, p2_stat, p2_id, p2_image, p2_primary,\
+        p2_secondary, p2_tcg_icon = choose_pokemon(p2_no)
 
     # Get Player One's (Opponent) Pokemon from previous page
     p1_name = session.get("p1_name", None)
@@ -244,8 +252,9 @@ def id_game():
 @app.route("/submit/stat/", methods=['POST'])
 def stat_game():
     # Get Player Two's Pokemon from API
-    p2_name, p2_height, p2_weight, p2_stat, p2_id, p2_image, p2_primary, p2_secondary, p2_tcg_icon = choose_pokemon(
-        'p2')
+    p2_no = get_pkmn_id()
+    p2_name, p2_height, p2_weight, p2_stat, p2_id, p2_image, p2_primary,\
+        p2_secondary, p2_tcg_icon = choose_pokemon(p2_no)
 
     # Get Player One's (Opponent) Pokemon from previous page
     p1_name = session.get("p1_name", None)
