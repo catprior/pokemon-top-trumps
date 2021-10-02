@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session
 import random
 import requests
-from pkmn_types import get_pkmn_style
+from pkmn_types import card_styles
 import json
 
 app = Flask(__name__)
@@ -35,9 +35,9 @@ def choose_pokemon(pokemon_no):
     player_id = player_pokemon['id']
     player_image = image_api_url.format(pokemon_no)
 
-    player_primary = get_pkmn_style(player_type)[0]
-    player_secondary = get_pkmn_style(player_type)[1]
-    player_tcg_icon = get_pkmn_style(player_type)[2]
+    player_primary = card_styles[player_type]['primary']
+    player_secondary = card_styles[player_type]['secondary']
+    player_tcg_icon = card_styles[player_type]['tcg_icon']
 
     return player_name, player_height, player_weight, player_stat,\
         player_id, player_image, player_primary, player_secondary, player_tcg_icon
