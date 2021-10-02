@@ -39,4 +39,3 @@ def test_card_styles_secondary():
 
 def test_card_styles_tcg_icon():
     assert player_tcg_icon == '/static/electric_icon.png'
-
